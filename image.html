@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photos - Aliff</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#000;--text:#fff;--muted:#aaa;
+--primary:#ff0000;--secondary:#AD4AE7;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+
+/* 🎥 BACKGROUND VIDEO */
+.bg-video{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+}
+
+/* overlay */
+.overlay{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+z-index:-1;
+}
+
+body{
+color:var(--text);
+padding:20px;
+}
+
+.container{max-width:600px;margin:auto}
+
+/* 🔥 PROFILE */
+.profile-wrapper{
+width:100%;
+aspect-ratio:16/9;
+margin:0 auto 20px;
+padding:5px;
+border-radius:20px;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+box-shadow:0 0 25px rgba(173,74,231,.5);
+animation:glow 4s infinite alternate;
+overflow:hidden;
+position:relative;
+}
+
+.profile-wrapper video{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:15px;
+}
+
+.profile-wrapper::after{
+content:'';
+position:absolute;
+top:0;left:0;width:100%;height:100%;
+background:linear-gradient(to top,rgba(0,0,0,.6),transparent);
+border-radius:15px;
+}
+
+@keyframes glow{
+0%{box-shadow:0 0 15px var(--primary)}
+100%{box-shadow:0 0 30px var(--secondary)}
+}
+
+/* HEADER */
+.header{text-align:center;margin-bottom:25px}
+.title{font-family:'Orbitron';font-size:26px;font-weight:800}
+.subtitle{color:var(--muted)}
+
+/* GRID FOTO */
+.image-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
+.image-box{
+aspect-ratio:1/1;
+border-radius:15px;
+overflow:hidden;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,.15);
+position:relative;
+}
+
+.image-box::before{
+content:'';
+position:absolute;
+top:0;left:0;right:0;height:3px;
+background:linear-gradient(90deg,var(--primary),var(--secondary))
+}
+
+.image-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* hover */
+.image-box:hover{
+transform:scale(1.05);
+transition:.3s;
+box-shadow:0 0 20px var(--secondary);
+}
+
+/* 🎵 MUSIC BUTTON */
+#musicBtn{
+margin-top:25px;
+padding:12px 20px;
+border:none;
+border-radius:15px;
+background:linear-gradient(135deg,#ff0000,#AD4AE7);
+color:#fff;
+font-size:16px;
+cursor:pointer;
+box-shadow:0 0 15px rgba(173,74,231,.5);
+transition:.3s;
+}
+
+#musicBtn:hover{
+transform:scale(1.08);
+box-shadow:0 0 25px #AD4AE7;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎥 BACKGROUND -->
+<video class="bg-video" autoplay loop muted playsinline>
+  <source src="https://files.catbox.moe/70ryey.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+<!-- 🔥 PROFILE -->
+<div class="profile-wrapper">
+<video src="https://files.catbox.moe/vwuqko.mp4" autoplay loop muted></video>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+<h1 class="title">Araa gembul</h1>
+<p class="subtitle">Pap nenen😋💦</p>
+</div>
+
+<!-- 📸 GRID -->
+<div class="image-grid">
+
+<div class="image-box">
+<img src="https://files.catbox.moe/pr44nc.jpg">
+</div>
+
+<div class="image-box">
+<img src="https://files.catbox.moe/pr44nc.jpg">
+</div>
+
+<div class="image-box">
+<img src="https://files.catbox.moe/ju00vy.jpg">
+</div>
+
+<div class="image-box">
+<img src="https://files.catbox.moe/b2e0af.jpg">
+</div>
+
+<div class="image-box">
+<img src="https://files.catbox.moe/yjzs25.jpg">
+</div>
+
+<div class="image-box">
+<img src="https://files.catbox.moe/h60mb9.jpg">
+</div>
+
+</div>
+
+<!-- 🎵 MUSIC BUTTON -->
+<div style="text-align:center;">
+<button id="musicBtn">▶ Play Music</button>
+</div>
+
+</div>
+
+<!-- 🎵 AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="https://files.catbox.moe/mbofda.m4a" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+
+let isPlaying = false;
+
+btn.addEventListener("click", ()=>{
+  if(!isPlaying){
+    music.play();
+    btn.innerText = "⏸ Pause Music";
+    isPlaying = true;
+  } else {
+    music.pause();
+    btn.innerText = "▶ Play Music";
+    isPlaying = false;
+  }
+});
+</script>
+
+</body>
+</html>
